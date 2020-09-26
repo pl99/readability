@@ -11,6 +11,11 @@ public class ColemanLiauIndex implements IReadability {
     }
 
     @Override
+    public String getCounterType() {
+        return "CL";
+    }
+
+    @Override
     public Double getScore() {
         return 0.0588*l - 0.296*s - 15.8;
     }

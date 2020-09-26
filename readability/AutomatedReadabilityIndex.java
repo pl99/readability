@@ -12,6 +12,11 @@ public class AutomatedReadabilityIndex implements IReadability {
     }
 
     @Override
+    public String getCounterType() {
+        return "ARI";
+    }
+
+    @Override
     public Double getScore() {
         return 4.71D * (characters / words) +
                 0.5D * (words / sentences) -

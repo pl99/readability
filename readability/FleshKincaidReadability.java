@@ -13,6 +13,11 @@ public class FleshKincaidReadability implements IReadability {
     }
 
     @Override
+    public String getCounterType() {
+        return "FK";
+    }
+
+    @Override
     public Double getScore() {
         return 0.39*(words/sentences) +
             11.8*(syllables/words) - 15.59;

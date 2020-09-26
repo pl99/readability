@@ -10,6 +10,11 @@ public class SmogIndex implements IReadability {
     }
 
     @Override
+    public String getCounterType() {
+        return "SMOG";
+    }
+
+    @Override
     public Double getScore() {
         Double score = 1.043*Math.sqrt(polysyllables*(30/sentences))
                 + 3.1291;

@@ -1,6 +1,7 @@
 package readability;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main {
@@ -16,52 +17,36 @@ public class Main {
 
         simplePrinter.printSourceMeashures();
 
-        Double ariScore = new AutomatedReadabilityIndex(sentences, words, characters).getScore();
-        Double fkScore = new FleshKincaidReadability(sentences, words, syllables).getScore();
-        Double smogScore = new SmogIndex(sentences, polysyllables).getScore();
-        Double clScore = new ColemanLiauIndex(100 * characters / words, 100 * sentences / words).getScore();
-        Integer ariAge = AutomatedReadabilityAge.findAge(Math.ceil(ariScore));
-        Integer fKAge = AutomatedReadabilityAge.findAge(Math.ceil(fkScore));
-        Integer smogAge = AutomatedReadabilityAge.findAge(Math.ceil(smogScore));
-        Integer clAge = AutomatedReadabilityAge.findAge(Math.ceil(clScore));
+        HashMap<String, IReadability> readAbilityMap = new HashMap<>();
+        AutomatedReadabilityIndex automatedReadabilityIndex = new AutomatedReadabilityIndex(sentences, words, characters);
+        FleshKincaidReadability fleshKincaidReadability = new FleshKincaidReadability(sentences, words, syllables);
+        SmogIndex smogIndex = new SmogIndex(sentences, polysyllables);
+        ColemanLiauIndex colemanLiauIndex = new ColemanLiauIndex(100 * characters / words, 100 * sentences / words);
+        readAbilityMap.put(automatedReadabilityIndex.getCounterType(), automatedReadabilityIndex);
+        readAbilityMap.put(fleshKincaidReadability.getCounterType(), fleshKincaidReadability);
+        readAbilityMap.put(smogIndex.getCounterType(), smogIndex);
+        readAbilityMap.put(colemanLiauIndex.getCounterType(), colemanLiauIndex);
         System.out.print("Enter the score you want to calculate (ARI, FK, SMOG, CL, all): ");
         System.out.println();
         Scanner scanner = new Scanner(System.in);
-        switch (scanner.nextLine().toUpperCase()) {
-            case "ARI":
-                simplePrinter
-                        .printScoreAndAge("Automated Readability Index: %.2f (about %d year olds).", ariScore, ariAge);
-                break;
-            case "FK":
-                simplePrinter
-                        .printScoreAndAge("Flesch–Kincaid readability tests: %.2f (about %d year olds).", fkScore, fKAge);
-                break;
-            case "SMOG":
-                simplePrinter
-                        .printScoreAndAge("Simple Measure of Gobbledygook: %.2f (about %d year olds).", smogScore, smogAge);
-                break;
-            case "CL":
-                simplePrinter
-                        .printScoreAndAge("Coleman–Liau index: %.2f (about %d year olds).", clScore, clAge);
-                break;
-            case "ALL":
-                simplePrinter
-                        .printScoreAndAge("Automated Readability Index: %.2f (about %d year olds).", ariScore, ariAge);
-                simplePrinter
-                        .printScoreAndAge("Flesch–Kincaid readability tests: %.2f (about %d year olds).", fkScore, fKAge);
-                simplePrinter
-                        .printScoreAndAge("Simple Measure of Gobbledygook: %.2f (about %d year olds).", smogScore, smogAge);
-                simplePrinter
-                        .printScoreAndAge("Coleman–Liau index: %.2f (about %d year olds).", clScore, clAge);
-
-                simplePrinter
-                        .printScoreAndAge(
-                                "This text should be understood in average by %.2f year olds.",
-                                AutomatedReadabilityAge.calcAverage(new Integer[]{ariAge, fKAge, smogAge, clAge}),
-                                0);
-                break;
-        }
+        String aCase = scanner.nextLine().toUpperCase();
         scanner.close();
+        if ("ALL".equals(aCase)) {
+            readAbilityMap.forEach((key, value) -> calcAndPrint(value, simplePrinter));
+        } else {
+            IReadability iReadability = readAbilityMap.get(aCase);
+            if (null != iReadability) {
+                calcAndPrint(iReadability, simplePrinter);
+            }
+        }
+    }
+
+    public static void calcAndPrint(IReadability iReadability, SimplePrinter simplePrinter) {
+        Double score = iReadability.getScore();
+        Integer age = AutomatedReadabilityAge.findAge(Math.ceil(score));
+        simplePrinter
+                .printScoreAndAge(iReadability.getCounterType() + ": %.2f (about %d year olds).", score, age);
+
 
     }
 }
