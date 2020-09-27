@@ -17,6 +17,11 @@ public class AutomatedReadabilityIndex implements IReadability {
     }
 
     @Override
+    public String getFullName() {
+        return "Automated Readability Index";
+    }
+
+    @Override
     public Double getScore() {
         return 4.71D * (characters / words) +
                 0.5D * (words / sentences) -

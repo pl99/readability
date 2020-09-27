@@ -15,6 +15,11 @@ public class SmogIndex implements IReadability {
     }
 
     @Override
+    public String getFullName() {
+        return "Simple Measure of Gobbledygook";
+    }
+
+    @Override
     public Double getScore() {
         Double score = 1.043*Math.sqrt(polysyllables*(30/sentences))
                 + 3.1291;

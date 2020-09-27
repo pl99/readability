@@ -16,6 +16,12 @@ public class SyllableCounter implements ICounter {
         }
         return result;
     }
+
+    @Override
+    public CounterType getCounterType() {
+        return CounterType.SYLLABLES;
+    }
+
     public Double syllableInWord (String word){
         char[] chars = word.toLowerCase().toCharArray();
         if('e' == chars[chars.length - 1]){

@@ -16,6 +16,11 @@ public class ColemanLiauIndex implements IReadability {
     }
 
     @Override
+    public String getFullName() {
+        return "Coleman–Liau index";
+    }
+
+    @Override
     public Double getScore() {
         return 0.0588*l - 0.296*s - 15.8;
     }

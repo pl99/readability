@@ -18,6 +18,11 @@ public class FleshKincaidReadability implements IReadability {
     }
 
     @Override
+    public String getFullName() {
+        return "Flesch–Kincaid readability tests";
+    }
+
+    @Override
     public Double getScore() {
         return 0.39*(words/sentences) +
             11.8*(syllables/words) - 15.59;

@@ -9,4 +9,9 @@ public class SentenceCounter implements ICounter {
     public Double count(String text) {
         return (double) SENTENCE_PATTERN.split(text).length;
     }
+
+    @Override
+    public CounterType getCounterType() {
+        return CounterType.SENTENCES;
+    }
 }

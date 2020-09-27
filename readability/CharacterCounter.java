@@ -8,4 +8,9 @@ public class CharacterCounter implements ICounter {
                 .filter(c -> !Character.isWhitespace(c))
                 .count();
     }
+
+    @Override
+    public CounterType getCounterType() {
+        return CounterType.CHARACTERS;
+    }
 }

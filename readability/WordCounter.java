@@ -13,4 +13,9 @@ public class WordCounter implements ICounter {
     public Double count(String text) {
         return (double) splitter.getWords(text).length;
     }
+
+    @Override
+    public CounterType getCounterType() {
+        return CounterType.WORDS;
+    }
 }

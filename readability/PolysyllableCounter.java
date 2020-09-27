@@ -19,4 +19,9 @@ public class PolysyllableCounter implements ICounter {
         }
         return result;
     }
+
+    @Override
+    public CounterType getCounterType() {
+        return CounterType.POLYSYLLABLES;
+    }
 }
