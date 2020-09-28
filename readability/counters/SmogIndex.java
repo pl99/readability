@@ -1,4 +1,6 @@
-package readability;
+package readability.counters;
+
+import readability.calcs.IReadability;
 
 public class SmogIndex implements IReadability {
     private final double sentences;

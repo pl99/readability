@@ -1,4 +1,4 @@
-package readability;
+package readability.calcs;
 
 public class FleshKincaidReadability implements IReadability {
 

@@ -1,4 +1,4 @@
-package readability;
+package readability.calcs;
 
 public class AutomatedReadabilityIndex implements IReadability {
     private final double sentences;

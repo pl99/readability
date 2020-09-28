@@ -1,13 +1,16 @@
-package readability;
+package readability.calcs;
+
+import readability.counters.SmogIndex;
+import readability.counters.TextCalculator;
 
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import static readability.CounterType.*;
+import static readability.counters.CounterType.*;
 
 public class ReadabilityCalculator {
-    private final HashMap<String, IReadability> readAbilityMap;
+    private final Map<String, IReadability> readAbilityMap;
 
 
     public ReadabilityCalculator(TextCalculator textCalculator) {
@@ -22,9 +25,12 @@ public class ReadabilityCalculator {
                 textCalculator.getDataMap().get(SYLLABLES));
         IReadability smogIndex = new SmogIndex(textCalculator.getDataMap().get(SENTENCES),
                 textCalculator.getDataMap().get(POLYSYLLABLES));
+
         IReadability colemanLiauIndex =
-                new ColemanLiauIndex((100 * textCalculator.getDataMap().get(CHARACTERS)) / (textCalculator.getDataMap().get(WORDS))
-                        , (100 * textCalculator.getDataMap().get(SENTENCES)) / textCalculator.getDataMap().get(WORDS));
+                new ColemanLiauIndex((100 * textCalculator.getDataMap().get(CHARACTERS)) /
+                        textCalculator.getDataMap().get(WORDS)
+                        , (100 * textCalculator.getDataMap().get(SENTENCES)) /
+                        textCalculator.getDataMap().get(WORDS));
 
         readAbilityMap.put(automatedReadabilityIndex.getCounterType(), automatedReadabilityIndex);
         readAbilityMap.put(fleshKincaidReadability.getCounterType(), fleshKincaidReadability);

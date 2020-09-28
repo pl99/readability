@@ -1,4 +1,4 @@
-package readability;
+package readability.util;
 
 import java.io.IOException;
 import java.nio.file.Files;

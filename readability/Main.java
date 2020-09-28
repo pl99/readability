@@ -1,5 +1,13 @@
 package readability;
 
+import readability.calcs.AutomatedReadabilityAge;
+import readability.calcs.IReadability;
+import readability.calcs.ReadabilityCalculator;
+import readability.counters.CounterType;
+import readability.counters.TextCalculator;
+import readability.util.AllReader;
+import readability.util.SimplePrinter;
+
 import java.io.IOException;
 
 public class Main {

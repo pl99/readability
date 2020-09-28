@@ -1,4 +1,4 @@
-package readability;
+package readability.counters;
 
 import java.util.Arrays;
 import java.util.List;

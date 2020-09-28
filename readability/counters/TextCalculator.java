@@ -1,13 +1,14 @@
-package readability;
+package readability.counters;
 
-import java.util.ArrayList;
+import readability.calcs.CharacterCounter;
+
+import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class TextCalculator {
-    private Map<CounterType, Double> dataMap;
-    private Map<CounterType, ICounter> counters;
+    private final Map<CounterType, Double> dataMap;
+    private final Map<CounterType, ICounter> counters;
 
     {
         dataMap = new HashMap<>();
@@ -24,10 +25,10 @@ public class TextCalculator {
     }
 
     public Map<CounterType, Double> getDataMap() {
-        return dataMap;
+        return Collections.unmodifiableMap(dataMap);
     }
 
     public Map<CounterType, ICounter> getCounters() {
-        return counters;
+        return Collections.unmodifiableMap(counters);
     }
 }

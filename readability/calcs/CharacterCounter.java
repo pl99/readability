@@ -1,4 +1,7 @@
-package readability;
+package readability.calcs;
+
+import readability.counters.CounterType;
+import readability.counters.ICounter;
 
 public class CharacterCounter implements ICounter {
     @Override

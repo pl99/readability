@@ -1,6 +1,4 @@
-package readability;
-
-import java.util.regex.Pattern;
+package readability.counters;
 
 public class WordCounter implements ICounter {
     private final WorldSplitter splitter ;

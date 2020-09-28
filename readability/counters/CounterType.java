@@ -1,4 +1,4 @@
-package readability;
+package readability.counters;
 
 public enum CounterType {
         WORDS,

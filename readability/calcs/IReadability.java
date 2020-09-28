@@ -1,4 +1,4 @@
-package readability;
+package readability.calcs;
 
 public interface IReadability {
     String getCounterType();
